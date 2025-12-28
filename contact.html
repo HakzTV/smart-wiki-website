@@ -25,20 +25,33 @@
         border-radius: 8px;
         transition: all 0.2s;
       }
-      .btn-black:hover {
+      .btn-black:hover:not(:disabled) {
         background-color: #333;
         transform: translateY(-1px);
       }
-      .gradient-border {
-        position: relative;
-        background: linear-gradient(135deg, #8b5cf6 0%, #d946ef 100%);
-        padding: 3px;
-        border-radius: 1.5rem;
-        box-shadow: 0 0 40px rgba(168, 85, 247, 0.3);
+      .btn-black:disabled {
+        opacity: 0.7;
+        cursor: not-allowed;
       }
-      .gradient-border-inner {
-        background: #0a0a0a;
-        border-radius: 1.4rem;
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      .spinner {
+        animation: spin 1s linear infinite;
+      }
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.5;
+        }
+      }
+      .pulse {
+        animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
       }
     </style>
   </head>
@@ -53,7 +66,8 @@
         </div>
 
         <form
-          action="https://formspree.io/f/YOUR_FORM_ID"
+          id="contact-form-element"
+          action="https://formspree.io/f/xvzobnkq"
           method="POST"
           class="bg-white p-8 md:p-12 rounded-3xl border border-gray-100 shadow-sm"
         >
@@ -71,7 +85,7 @@
                 name="name"
                 required
                 class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 outline-none transition-all"
-                placeholder="John Doe"
+                placeholder="Your Name"
               />
             </div>
 
@@ -97,7 +111,7 @@
                 for="company"
                 class="block text-sm font-semibold text-gray-700 mb-2"
               >
-                Company (Optional)
+                Company
               </label>
               <input
                 type="text"
@@ -148,13 +162,86 @@
 
             <button
               type="submit"
-              class="w-full btn-black px-8 py-4 text-md font-semibold flex items-center justify-center group"
+              id="submit-button"
+              class="w-full btn-black px-8 py-4 text-md font-semibold flex items-center justify-center group cursor-pointer"
             >
-              Send Message
-              <span class="ml-2 group-hover:translate-x-1 transition-transform"
-                >→</span
-              >
+              <span id="button-text" class="flex items-center">
+                Send Message
+                <span
+                  class="ml-2 group-hover:translate-x-1 transition-transform"
+                  >→</span
+                >
+              </span>
+              <span id="loading-spinner" class="hidden">
+                <svg
+                  class="spinner w-5 h-5"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                >
+                  <circle
+                    class="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    stroke-width="4"
+                  ></circle>
+                  <path
+                    class="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                  ></path>
+                </svg>
+                <span class="ml-2">Sending...</span>
+              </span>
             </button>
+          </div>
+
+          <!-- Success Message (initially hidden) -->
+          <div
+            id="success-message"
+            class="hidden mt-6 p-4 bg-green-50 border border-green-200 rounded-lg"
+          >
+            <div class="flex items-center">
+              <svg
+                class="w-5 h-5 text-green-600 mr-2"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+              <p class="text-green-800 font-medium">
+                Message sent successfully! We'll get back to you soon.
+              </p>
+            </div>
+          </div>
+
+          <!-- Error Message (initially hidden) -->
+          <div
+            id="error-message"
+            class="hidden mt-6 p-4 bg-red-50 border border-red-200 rounded-lg"
+          >
+            <div class="flex items-center">
+              <svg
+                class="w-5 h-5 text-red-600 mr-2"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+              <p class="text-red-800 font-medium">
+                Something went wrong. Please try again.
+              </p>
+            </div>
           </div>
 
           <p class="text-xs text-gray-500 text-center mt-6">
@@ -164,5 +251,58 @@
         </form>
       </div>
     </section>
+
+    <script>
+      const form = document.getElementById("contact-form-element");
+      const submitButton = document.getElementById("submit-button");
+      const buttonText = document.getElementById("button-text");
+      const loadingSpinner = document.getElementById("loading-spinner");
+      const successMessage = document.getElementById("success-message");
+      const errorMessage = document.getElementById("error-message");
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        // Hide any previous messages
+        successMessage.classList.add("hidden");
+        errorMessage.classList.add("hidden");
+
+        // Show loading state
+        submitButton.disabled = true;
+        buttonText.classList.add("hidden");
+        loadingSpinner.classList.remove("hidden");
+        loadingSpinner.classList.add("flex", "items-center");
+
+        try {
+          const formData = new FormData(form);
+
+          const response = await fetch(form.action, {
+            method: "POST",
+            body: formData,
+            headers: {
+              Accept: "application/json",
+            },
+          });
+
+          if (response.ok) {
+            // Success
+            successMessage.classList.remove("hidden");
+            form.reset();
+          } else {
+            // Error
+            errorMessage.classList.remove("hidden");
+          }
+        } catch (error) {
+          // Network error
+          errorMessage.classList.remove("hidden");
+        } finally {
+          // Reset button state
+          submitButton.disabled = false;
+          buttonText.classList.remove("hidden");
+          loadingSpinner.classList.add("hidden");
+          loadingSpinner.classList.remove("flex", "items-center");
+        }
+      });
+    </script>
   </body>
 </html>

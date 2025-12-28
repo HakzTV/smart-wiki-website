@@ -1,0 +1,105 @@
+body {
+  font-family: "Inter", sans-serif;
+  background-color: #f9f8f3;
+}
+h1,
+h2 {
+  font-family: "Lora", serif;
+}
+.btn-black {
+  background-color: #1a1a1a;
+  color: white;
+  border-radius: 8px;
+  transition: all 0.2s;
+}
+.btn-black:hover {
+  background-color: #333;
+  transform: translateY(-1px);
+}
+.gradient-border {
+  position: relative;
+  background: linear-gradient(135deg, #8b5cf6 0%, #d946ef 100%);
+  padding: 3px;
+  border-radius: 1.5rem;
+  box-shadow: 0 0 40px rgba(168, 85, 247, 0.3);
+}
+
+.gradient-border-inner {
+  background: #0a0a0a;
+  border-radius: 1.4rem;
+}
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(5deg);
+  }
+}
+@keyframes point {
+  0%,
+  100% {
+    transform: translateX(0) translateY(0) rotate(-15deg);
+  }
+  50% {
+    transform: translateX(-8px) translateY(-5px) rotate(-20deg);
+  }
+}
+@keyframes boxPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 30px rgba(139, 92, 246, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 60px rgba(139, 92, 246, 0.8);
+  }
+}
+
+.unify-box.active {
+  animation: boxPulse 2s ease-in-out infinite;
+}
+.float-icon {
+  animation: float 3s ease-in-out infinite;
+}
+.pointing-hand {
+  animation: point 1s ease-in-out infinite;
+}
+
+.float-icon:nth-child(2) {
+  animation-delay: 0.5s;
+}
+.float-icon:nth-child(3) {
+  animation-delay: 1s;
+}
+.float-icon:nth-child(4) {
+  animation-delay: 1.5s;
+}
+.float-icon:nth-child(5) {
+  animation-delay: 2s;
+}
+.float-icon:nth-child(6) {
+  animation-delay: 2.5s;
+}
+.float-icon:nth-child(7) {
+  animation-delay: 3s;
+}
+.float-icon:nth-child(8) {
+  animation-delay: 3.5s;
+}
+@keyframes float-side {
+  0%,
+  100% {
+    transform: translateX(0) translateY(0);
+  }
+  50% {
+    transform: translateX(50px) translateY(-10px);
+  }
+}
+
+.animate-ghost {
+  animation: float-side 4s ease-in-out infinite;
+}
+.btn-rad {
+  border-radius: 8px;
+}

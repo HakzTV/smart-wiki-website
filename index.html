@@ -9,110 +9,7 @@
       href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600&family=Inter:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
-    <style>
-      body {
-        font-family: "Inter", sans-serif;
-        background-color: #f9f8f3;
-      }
-      h1,
-      h2 {
-        font-family: "Lora", serif;
-      }
-      .btn-black {
-        background-color: #1a1a1a;
-        color: white;
-        border-radius: 8px;
-        transition: all 0.2s;
-      }
-      .btn-black:hover {
-        background-color: #333;
-        transform: translateY(-1px);
-      }
-      .gradient-border {
-        position: relative;
-        background: linear-gradient(135deg, #8b5cf6 0%, #d946ef 100%);
-        padding: 3px;
-        border-radius: 1.5rem;
-        box-shadow: 0 0 40px rgba(168, 85, 247, 0.3);
-      }
-
-      .gradient-border-inner {
-        background: #0a0a0a;
-        border-radius: 1.4rem;
-      }
-      @keyframes float {
-        0%,
-        100% {
-          transform: translateY(0px) rotate(0deg);
-        }
-        50% {
-          transform: translateY(-20px) rotate(5deg);
-        }
-      }
-      @keyframes point {
-        0%,
-        100% {
-          transform: translateX(0) translateY(0) rotate(-15deg);
-        }
-        50% {
-          transform: translateX(-8px) translateY(-5px) rotate(-20deg);
-        }
-      }
-      @keyframes boxPulse {
-        0%,
-        100% {
-          box-shadow: 0 0 30px rgba(139, 92, 246, 0.4);
-        }
-        50% {
-          box-shadow: 0 0 60px rgba(139, 92, 246, 0.8);
-        }
-      }
-
-      .unify-box.active {
-        animation: boxPulse 2s ease-in-out infinite;
-      }
-      .float-icon {
-        animation: float 3s ease-in-out infinite;
-      }
-      .pointing-hand {
-        animation: point 1s ease-in-out infinite;
-      }
-
-      .float-icon:nth-child(2) {
-        animation-delay: 0.5s;
-      }
-      .float-icon:nth-child(3) {
-        animation-delay: 1s;
-      }
-      .float-icon:nth-child(4) {
-        animation-delay: 1.5s;
-      }
-      .float-icon:nth-child(5) {
-        animation-delay: 2s;
-      }
-      .float-icon:nth-child(6) {
-        animation-delay: 2.5s;
-      }
-      .float-icon:nth-child(7) {
-        animation-delay: 3s;
-      }
-      .float-icon:nth-child(8) {
-        animation-delay: 3.5s;
-      }
-      @keyframes float-side {
-        0%,
-        100% {
-          transform: translateX(0) translateY(0);
-        }
-        50% {
-          transform: translateX(50px) translateY(-10px);
-        }
-      }
-
-      .animate-ghost {
-        animation: float-side 4s ease-in-out infinite;
-      }
-    </style>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <nav class="flex items-center justify-between px-8 py-6 max-w-7xl mx-auto">
@@ -122,8 +19,7 @@
       </div>
       <div class="hidden md:flex space-x-8 text-sm font-medium text-gray-700">
         <a href="about.html" class="hover:text-black">About</a>
-        <a href="privacy.html" class="hover:text-black">Privacy Policy</a>
-        <a href="terms.html" class="hover:text-black">Terms of Service</a>
+        <a href="contact.html" class="hover:text-black">Contact</a>
       </div>
       <div class="flex items-center space-x-4">
         <a
@@ -152,14 +48,18 @@
         truth across your business.
       </p>
       <div class="flex flex-col md:flex-row justify-center gap-4">
-        <button class="btn-black px-10 py-4 text-md font-semibold">
-          Get started
-        </button>
-        <button
-          class="inline-block px-10 py-4 text-md font-semibold border border-white text-white transition-all duration-300 ease-out hover:bg-black hover:text-black hover:bg-white btn-rad"
-        >
-          Talk to us
-        </button>
+        <a href="https://smart-wiki-98f42.web.app/setup">
+          <button class="btn-black px-10 py-4 text-md font-semibold">
+            Get started
+          </button>
+        </a>
+        <a href="contact.html">
+          <button
+            class="inline-block px-10 py-4 text-md font-semibold border border-black text-black transition-all duration-300 ease-out hover:bg-black hover:text-black hover:bg-white btn-rad"
+          >
+            Talk to us
+          </button>
+        </a>
       </div>
     </header>
 
@@ -194,22 +94,22 @@
           <div
             class="h-32 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 p-4 flex flex-col justify-end"
           >
-            <p class="text-white text-xs font-bold">Q4 Engineering Plan</p>
+            <p class="text-white text-xs font-bold">Secure</p>
           </div>
           <div
             class="h-32 rounded-xl bg-gradient-to-br from-purple-500 to-pink-600 p-4 flex flex-col justify-end"
           >
-            <p class="text-white text-xs font-bold">Design System v2</p>
+            <p class="text-white text-xs font-bold">Intuitive Design</p>
           </div>
           <div
             class="h-32 rounded-xl bg-gradient-to-br from-green-500 to-teal-600 p-4 flex flex-col justify-end"
           >
-            <p class="text-white text-xs font-bold">Onboarding Checklist</p>
+            <p class="text-white text-xs font-bold">Robust Use Cases</p>
           </div>
           <div
             class="h-32 rounded-xl bg-gradient-to-br from-orange-500 to-red-600 p-4 flex flex-col justify-end"
           >
-            <p class="text-white text-xs font-bold">API Documentation</p>
+            <p class="text-white text-xs font-bold">Admin Dashboard</p>
           </div>
         </div>
 
@@ -217,10 +117,10 @@
           class="absolute -bottom-6 -right-6 bg-white p-6 rounded-2xl shadow-xl hidden lg:block border border-gray-100"
         >
           <p class="text-xs text-gray-500 font-bold uppercase mb-1">
-            Weekly Views
+            Productivity
           </p>
           <div class="flex items-center space-x-3">
-            <span class="text-2xl font-bold">12,482</span>
+            <span class="text-2xl font-bold">34%</span>
             <span class="text-green-500 text-sm font-bold">↑ 34%</span>
           </div>
         </div>
@@ -1057,31 +957,34 @@
         <div
           class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8"
         >
-          <button
-            class="px-8 py-4 bg-[#1A1A1A] text-white rounded-xl font-semibold hover:bg-[#333] transition-all flex items-center gap-2 shadow-lg transform hover:-translate-y-0.5"
-          >
-            Get started
-            <svg
-              class="w-5 h-5"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M9 5l7 7-7 7"
-              />
-            </svg>
-          </button>
-          <div class="relative flex items-center gap-3">
+          <a href="https://smart-wiki-98f42.web.app/setup">
             <button
-              class="px-8 py-4 bg-white border-2 border-gray-200 text-[#1A1A1A] rounded-xl font-semibold hover:bg-gray-50 transition-colors shadow-sm"
+              class="px-8 py-4 bg-[#1A1A1A] text-white rounded-xl font-semibold hover:bg-[#333] transition-all flex items-center gap-2 shadow-lg transform hover:-translate-y-0.5"
             >
-              Talk to us
+              Get started
+              <svg
+                class="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
             </button>
-
+          </a>
+          <div class="relative flex items-center gap-3">
+            <a href="contact.html">
+              <button
+                class="px-8 py-4 bg-white border-2 border-gray-200 text-[#1A1A1A] rounded-xl font-semibold hover:bg-gray-50 transition-colors shadow-sm"
+              >
+                Talk to us
+              </button>
+            </a>
             <!-- Animated Pointing Hand Character -->
             <div
               class="absolute -left-16 top-1/2 -translate-y-1/2 pointing-hand"
@@ -1180,8 +1083,8 @@
 
         <!-- Additional Text -->
         <p class="text-sm text-gray-500 mt-8">
-          Stop searching through Slack, email, and scattered folders. Find what
-          you need in seconds.
+          Stop searching through , Teams, email, whatsapp messages,and scattered
+          folders. Find what you need in seconds.
         </p>
       </div>
     </section>
